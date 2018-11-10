@@ -1,3 +1,15 @@
+'''
+Assignment #2
+1. Add / modify code ONLY between the marked areas (i.e. "Place code below")
+2. Run the associated test harness for a basic check on completeness. A successful run of the test cases does not guarantee accuracy or fulfillment of the requirements. Please do not submit your work if test cases fail.
+3. To run unit tests simply use the below command after filling in all of the code:
+    python 01_assignment.py
+  
+4. Unless explicitly stated, please do not import any additional libraries but feel free to use built-in Python packages
+5. Submissions must be a Python file and not a notebook file (i.e *.ipynb)
+6. Do not use global variables
+7. Make sure your work is committed to your master branch
+'''
 import math
 import unittest
 import numpy as np
@@ -181,6 +193,103 @@ def exercise10(sentence):
     reversed=space1.join(list2)
     # ------ Place code above here /\ /\ /\ ------
     return (reversed)
+
+class TestAssignment2(unittest.TestCase):
+    def test_exercise01(self):
+        print('Testing exercise 1')
+        a = exercise01()
+        self.assertEqual(len(a), 5)
+        self.assertTrue('cat' in a)
+        self.assertTrue('dog' in a)
+        self.assertTrue('manta ray' in a)
+    
+    def test_exercise02(self):
+        print('Testing exercise 2')
+        a, l = exercise02()
+        self.assertEqual(len(a), 5)
+        self.assertEqual(l, 5)
+        self.assertTrue('cat' in a)
+        self.assertTrue('dog' in a)
+        self.assertTrue('manta ray' in a)
+
+    def test_exercise03(self):
+        print('Testing exercise 3')
+        c, tfe = exercise03()
+        self.assertEqual(c[0], 10)
+        self.assertEqual(c[11], -5)
+        self.assertEqual(len(c), 12)
+        self.assertEqual(tfe, 6)
+
+    def test_exercise04(self):
+        print('Testing exercise 4')
+        more_temperatures = np.random.randint(300, 400, size=25)
+        iot_sensor_points = {1: 801, 2: 644, 3: 991, 4: 721,
+                             5: 752, 6: 871, 7: 991, 8: 1023, 9: 804, 10: 882}
+        samples, temperatures, more_temperatures, iot_sensor_points, a, b, c, d, e, copy_of_samples = exercise04(more_temperatures, iot_sensor_points,
+                                                                                                                 8000, 8500, 9000, 9500, 9999)
+
+        self.assertEqual(len(temperatures), 50)
+        self.assertEqual(len(samples), 10)
+        self.assertEqual(temperatures[0], 9999)
+        self.assertEqual(temperatures[11], 801)
+        self.assertEqual(samples[9], 8000)
+        self.assertEqual(copy_of_samples[0], 8000)
+        self.assertEqual(a, 8000)
+        self.assertEqual(b, 8500)
+        self.assertEqual(c, 9000)
+        self.assertEqual(d, 9500)
+        self.assertEqual(e, 9999)
+
+    def test_exercise05(self):
+        print('Testing exercise 5')
+        self.assertEqual(exercise05(5), 120)
+        self.assertEqual(exercise05(10), 3628800)
+
+    def test_exercise06(self):
+        print('Testing exercise 6')
+        length_n, sum_n, average_n = exercise06([1, 2, 3, 4, 5])
+        self.assertEqual(average_n, 3)
+        self.assertEqual(length_n, 5)
+        length_n, sum_n, average_n = exercise06([1, 2, 120])
+        self.assertEqual(average_n, 41)
+        self.assertEqual(length_n, 3)
+
+    def test_exercise07(self):
+        print('Testing exercise 7')
+        self.assertTrue(exercise07([1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == False)
+        self.assertTrue(exercise07([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == True)
+        self.assertTrue(exercise07([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10]) == False)
+        self.assertTrue(exercise07([1, 2.00002, 2.00001, 4, 5, 6, 7, 8, 9, 10]) == True)
+
+    def test_exercise08(self):
+        print('Testing exercise 8')
+        menu = ['Buy Bitcoin','Buy Ethereum','Sell Bitcoin','Sell Ethereum']
+        r, l = display_menu(menu)
+        self.assertEqual(r,-1)
+        self.assertEqual(l,4)
+        menu = ('Buy Bitcoin','Buy Ethereum','Sell Bitcoin','Sell Ethereum')
+        r, l = display_menu(menu)
+        self.assertTrue(r > 0)
+        self.assertEqual(l,4)
+    
+    def test_exercise09(self):
+        print('Testing exercise 9')
+        dogs = exercise09()
+        for d in dogs:
+            print(d)
+        self.assertTrue('https://random.dog/' in d)
+            
+
+    def test_exercise10(self):
+        print('Testing exercise 10')
+        self.assertEqual(exercise10('HellO'),'oLLEh')
+        self.assertEqual(exercise10('ThIs Is MaD'),'dAm_Si_SiHt')
+
+
+
+
+if __name__ == '__main__':
+    unittest.main()
 
 
 
